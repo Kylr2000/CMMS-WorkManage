@@ -1,0 +1,48 @@
+.print-button {
+    position: fixed;
+    bottom: 20px;
+    right: 200px;
+    background-color: #0aa6c2d5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.print-button::before {
+    content: "\f02f"; /* Unicode for the print icon in Font Awesome */
+    font-family: "Font Awesome 5 Free"; /* Font family for Font Awesome */
+    font-weight: 900;
+    padding-right: 5px; /* Space between the icon and the button text */
+}
+
+@media print {
+    .graph-wrapper {
+        page-break-inside: avoid;
+    }
+    .page-wrapper {
+      page-break-inside: avoid;
+    }    
+    html, body {
+      height: initial !important;
+      overflow: initial !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important; /* Add this line */
+    }
+  
+    .pagebreak {
+      page-break-before: always;
+    }
+    .graph-container {
+      display: block;
+    }
+  
+    .graph-container > * {
+      width: 100% !important;
+      display: block;
+    }
+  }
+
+  

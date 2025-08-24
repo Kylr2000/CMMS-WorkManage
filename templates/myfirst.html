@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load plotly_dash %}
+
+
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+        
+            #printable-content, #printable-content * {
+                visibility: visible;
+            }
+        
+            #printable-content {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+                 
+        <div id="dash-app-container" class="{% plotly_class name='Example' %} card" style="width: 100%;height: 100% ">
+            {% plotly_app name='Example' ratio=0.38%}
+        </div>
+    
+
+    <script>
+        function printDashApp() {
+            window.print();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.querySelector('#dash-app-container iframe');
+            if (iframe) {
+                iframe.id = 'dash-app-iframe';
+            }
+        });
+    </script>
+
+{% endblock  %}
+  
+
+

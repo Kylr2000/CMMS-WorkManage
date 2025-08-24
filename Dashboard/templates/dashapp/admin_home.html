@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.user_type == 'admin' %}
+<h6> HELLO ADMIN </h6>
+{% else %}
+<h1>HELLO STAFF</h1>
+{% endif %}
+{% endblock %}

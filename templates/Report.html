@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/static/css/print.css" rel="stylesheet" type="text/css" >
+    <title>Radio Measurement Report</title>
+    <style>
+         @page {
+            size: A4;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        img {
+            max-width: 180%;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+        
+            #printable-content, #printable-content * {
+                visibility: visible;
+            }
+        
+            #printable-content {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="printable-content">
+        <h1>Coverage Measurement Report</h1>
+        <p>Radio Coverage</p>
+        {{ report1 }}
+        <p>Average RSSI:{{ rssi }}dBm</p>
+        <p>Average RSCP:{{ rscp }}dBm</p>
+        <p>Number of 3G Readings:</p>
+        {{ three_g }}
+        <p>Number of 4G Readings:</p>
+        {{ four_g }}
+        <p>Cellular Coverage Measurements</p>
+        {{ report2 }}
+    </div>
+    <script src="/static/js/print.js"></script>
+</body>
+</html>

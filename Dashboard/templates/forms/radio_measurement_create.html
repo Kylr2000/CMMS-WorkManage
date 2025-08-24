@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<body>
+    <div class="container pb-3">
+        <div class="content-section pt-5">
+            <div class="form-container">
+                <h1>Please fill in the following information about the VHF Radio Measurement:</h1>
+                <p>Fields marked with * are required.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                    
+                </form>
+            </div>
+       </div>
+    </div>
+</body>
+{% endblock %}

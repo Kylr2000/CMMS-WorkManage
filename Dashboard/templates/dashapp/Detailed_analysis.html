@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load plotly_dash %}
+
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+    
+        #printable-content, #printable-content * {
+            visibility: visible;
+        }
+    
+        #printable-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
+
+<div id="printable-content" class="{% plotly_class name='Detailed_Analysis' %} card" style="width: 100%;height: 100% ">
+    {% plotly_header %}
+    {% plotly_direct name='Detailed_Analysis'%}
+</div>
+
+
+{% plotly_footer %}
+{% block extra_js %}
+{% endblock  %}
+{% endblock  %}
+
+  

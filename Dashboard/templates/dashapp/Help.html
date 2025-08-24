@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load plotly_dash %}
+
+
+<div id="container-fluid" class="{% plotly_class name='Help' %} card" style="width: 100%;height: 100% ">
+    {% plotly_header %}
+    {% plotly_direct name='Help'%}
+</div>
+
+
+
+
+
+
+
+
+{% plotly_footer %}
+{% block extra_js %}
+
+
+{% endblock  %}
+{% endblock  %}
