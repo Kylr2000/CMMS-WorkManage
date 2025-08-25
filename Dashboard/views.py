@@ -27,6 +27,10 @@ from .models import Transmitter
 import math
 from datetime import datetime
 from django.db.models import Avg
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .forms import AssetForm, WorkOrderForm, WorkOrderUpdateForm
+from .models import WorkOrder
 
 
 
@@ -74,7 +78,7 @@ class admin_login_view(generic.FormView):
 
     def get(self, request, *args, **kwargs):
         if 'next' in request.GET:
-            messages.error(request, 'You must be a registered user or administrator to use this feature.')
+            messages.error(request, 'Please login as a registered user or administrator')
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -287,6 +291,47 @@ def geojson_view(request):
 
     # Return the GeoJSON as a JSON response
     return JsonResponse(geojson)
+
+
+
+@login_required
+def create_asset(request):
+    if request.method == "POST":
+        form = AssetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("Dashboard")  # adjust to your success page
+    else:
+        form = AssetForm()
+    return render(request, "dashapp/asset_form.html", {"form": form})
+
+
+@login_required
+def create_workorder(request):
+    if request.method == "POST":
+        form = WorkOrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("Dashboard")
+    else:
+        form = WorkOrderForm()
+    return render(request, "dashapp/workorder_form.html", {"form": form})
+
+
+@login_required
+def add_workorder_update(request, pk):
+    work_order = get_object_or_404(WorkOrder, pk=pk)
+    if request.method == "POST":
+        form = WorkOrderUpdateForm(request.POST)
+        if form.is_valid():
+            update = form.save(commit=False)
+            update.work_order = work_order
+            update.updated_by = request.user
+            update.save()
+            return redirect("Dashboard")
+    else:
+        form = WorkOrderUpdateForm()
+    return render(request, "dashapp/workorder_update_form.html", {"form": form, "work_order": work_order})
                 
      
      

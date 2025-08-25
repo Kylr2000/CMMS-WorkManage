@@ -21,5 +21,9 @@ urlpatterns = [
     path('radio_measurement_create,', views.radio_measurement_form, name='radio_measurement_create'),
     path('cell_measurement_create,', views.cellular_measurement_form, name='cell_measurement_create'),
     path('geojson', views.geojson_view, name='geojson'),
-    path('Report', GenerateReportView.as_view(), name='report')
+    path('Report', GenerateReportView.as_view(), name='report'),
+
+    path("create_asset/", views.create_asset, name="create_asset"),
+    path("create_workorder/", views.create_workorder, name="create_workorder"),
+    path("workorder/<int:id>/update/", views.add_workorder_update, name="update_workorder"),
 ]

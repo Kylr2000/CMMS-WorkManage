@@ -37,7 +37,7 @@ app.layout = dbc.Container([
     # Dashboard title
     dbc.Row([
         dbc.Col([
-            html.H1("Work Assignment Management Dashboard"),
+            html.H1("Work Management Summary"),
             html.H6("View, filter, and manage all work assignments assigned to staff."),
         ])
     ], style={'margin-top': '20px', 'margin-bottom': '20px'}),

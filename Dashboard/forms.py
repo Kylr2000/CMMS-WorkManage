@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, ButtonHolder
-from .models import CustomUser, RadioMeasurement, NetworkPointofReception, CellularMeasurement
+from .models import CustomUser, RadioMeasurement, NetworkPointofReception, CellularMeasurement, WorkOrder, Asset, WorkOrderUpdate
 
 class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -51,4 +51,48 @@ class CellularMeasurementForm(forms.ModelForm):
         model = CellularMeasurement
         fields = '__all__'
 
+
+
+# Asset Form
+# ---------------------------
+class AssetForm(forms.ModelForm):
+    class Meta:
+        model = Asset
+        fields = ['asset_tag', 'name', 'location', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+        }
+
+
+# ---------------------------
+# Work Order Form
+# ---------------------------
+class WorkOrderForm(forms.ModelForm):
+    class Meta:
+        model = WorkOrder
+        fields = [
+            'title',
+            'description',
+            'status',
+            'priority',
+            'assigned_to',
+            'asset',
+            'due_date',
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
+
+
+# ---------------------------
+# Work Order Update Form
+# ---------------------------
+class WorkOrderUpdateForm(forms.ModelForm):
+    class Meta:
+        model = WorkOrderUpdate
+        fields = ['comment']
+        widgets = {
+            'comment': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Enter update/comment here...'}),
+        }
 

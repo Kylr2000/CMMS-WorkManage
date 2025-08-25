@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'coverageapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'SeaCoverage',
+        'NAME': 'WorkManagement',
         'USER': 'postgres',
-        'PASSWORD': 'openup123',
+        'PASSWORD': 'Openup123',
         'HOST': 'localhost',
         'PORT': '',
     }
